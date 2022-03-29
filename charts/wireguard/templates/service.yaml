@@ -1,0 +1,15 @@
+{{- $fullName := include "wireguard.fullname" . -}}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ $fullName }}
+  labels:
+    {{- include "wireguard.labels" . | nindent 4 }}
+spec:
+  selector:
+    {{- include "wireguard.selectorLabels" . | nindent 4 }}
+  type: NodePort
+  ports:
+  - name: wireguard
+    port: 51820
+    protocol: UDP

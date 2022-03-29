@@ -1,0 +1,17 @@
+# Default values for wireguard.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+image:
+  repository: linuxserver/wireguard
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: ""
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+env:
+  peers: "1"
+  # serverUrl: ""
+  # peerDNS: ""
