@@ -1,0 +1,52 @@
+{{- $fullName := include "wireguard.fullname" . -}}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "wireguard.fullname" . }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      {{- include "wireguard.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "wireguard.selectorLabels" . | nindent 8 }}
+    spec:
+      initContainers:
+      - name: init
+        image: busybox:1.32.0
+        command:
+        - sh
+        - -c
+        - sysctl -w net.ipv4.ip_forward=1 && sysctl -w net.ipv4.conf.all.forwarding=1
+        securityContext:
+          privileged: true
+          capabilities:
+            add:
+            - NET_ADMIN
+      containers:
+      - name: wireguard
+        image: "{{ .Values.image.repository }}:{{ .Chart.AppVersion }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        securityContext:
+          #privileged: true
+          capabilities:
+            add:
+            - NET_ADMIN
+            - SYS_MODULE
+        env:
+        - name: PEERS
+          value: {{ .Values.env.peers | quote }}
+        {{- if .Values.env.serverUrl }}
+        - name: SERVERURL
+          value: {{ .Values.env.serverUrl | quote }}
+        {{- end}}
+        {{- if .Values.env.peerDNS }}
+        - name: PEERDNS
+          value: {{ .Values.env.peerDNS | quote }}
+        {{- end}}
+        ports:
+        - name: wireguard
+          containerPort: 51820
+          protocol: UDP
