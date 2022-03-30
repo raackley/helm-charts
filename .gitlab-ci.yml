@@ -1,0 +1,41 @@
+stages:
+  - package
+  - upload
+
+.upload:
+  stage: upload
+  variables:
+    CHANNEL: test
+  image: curlimages/curl:latest
+  script:
+    - CHARTFILE=$(ls wireguard-*.tgz)
+    - 'curl --request POST --user gitlab-ci-token:$CI_JOB_TOKEN --form "chart=@${CHARTFILE}" "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/helm/api/${CHANNEL}/charts"'
+
+package:
+  stage: package
+  image: raackley/gitlab-runner:latest
+  script:
+    - helm package charts/wireguard/
+  artifacts:
+    paths:
+      - wireguard-*.tgz
+    expire_in: 1 week
+  rules:
+    - if: '$CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH'
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+
+upload-test:
+  extends:
+    - .upload
+  variables:
+    CHANNEL: test
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+
+upload-stable:
+  extends:
+    - .upload
+  variables:
+    CHANNEL: stable
+  rules:
+    - if: '$CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH'
