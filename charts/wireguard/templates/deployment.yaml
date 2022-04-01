@@ -30,7 +30,6 @@ spec:
         image: "{{ .Values.image.repository }}:{{ .Chart.AppVersion }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         securityContext:
-          #privileged: true
           capabilities:
             add:
             - NET_ADMIN
