@@ -11,6 +11,10 @@ imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
 
+service:
+  type: ClusterIP
+  # loadBalancerIP: <IP> # Set if using type LoadBalancer
+
 env:
   peers: "1"
   # serverUrl: ""
