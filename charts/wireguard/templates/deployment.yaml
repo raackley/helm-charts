@@ -49,3 +49,12 @@ spec:
         - name: wireguard
           containerPort: 51820
           protocol: UDP
+        volumeMounts:
+        - name: config
+          mountPath: /config
+      volumes:
+      - name: config
+      {{- if .Values.persistence.enabled }}
+        persistentVolumeClaim:
+          claimName: {{ if .Values.persistence.existingClaim }}{{ .Values.persistence.existingClaim }}{{- else }}{{ $fullName }}{{- end }}
+      {{- end }}
