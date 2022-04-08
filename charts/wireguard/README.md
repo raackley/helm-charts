@@ -29,3 +29,5 @@ helm install <release name> -n <namespace> --create-namespace raackley-stable/wi
 | env.peerDNS            | string | n/a       | DNS server to use.                               |
 | service.type           | string | ClusterIP | Service type to use for Wireguard.               |
 | service.loadBalancerIP | string | n/a       | IP for Load Balancer if using type LoadBalancer. |
+| persistence.enabled    | bool   | false     | Enables persistent storage                       |
+| persistence.size       | string | "100Mi"   | Size of persistent storage volume                |
