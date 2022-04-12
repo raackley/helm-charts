@@ -15,4 +15,5 @@ spec:
   ports:
   - name: wireguard
     port: 51820
+    nodePort: 31820
     protocol: UDP
