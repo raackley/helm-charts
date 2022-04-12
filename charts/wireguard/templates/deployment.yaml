@@ -5,6 +5,8 @@ metadata:
   name: {{ include "wireguard.fullname" . }}
 spec:
   replicas: 1
+  strategy:
+    type: Recreate
   selector:
     matchLabels:
       {{- include "wireguard.selectorLabels" . | nindent 6 }}
