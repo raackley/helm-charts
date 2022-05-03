@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "transmission-vpn.fullname" . }}
+  labels:
+    {{- include "transmission-vpn.selectorLabels" . | nindent 4 }}
+spec:
+  type: LoadBalancer
+  ports:
+    - port: {{ .Values.port}}
+      targetPort: {{ .Values.port}}
+      protocol: TCP
+  selector:
+    {{- include "transmission-vpn.selectorLabels" . | nindent 4 }}
