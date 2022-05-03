@@ -1,0 +1,43 @@
+# Default values for transmission-vpn.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+image:
+  repository: haugene/transmission-openvpn
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: ""
+
+env:
+  createTunDevice: "true"
+  openvpnConfig: "hk-hkg_udp"
+  openvpnProvider: "SURFSHARK"
+  webproxyEnabled: "false"
+  localNetwork: "192.168.0.0/24"
+  transmissionRatioLimit: "0"
+  transmissionRatioLimitEnabled: "true"
+  transmissionWatchDirEnabled: "false"
+
+port: 9091
+
+dns:
+  nameserver: 1.1.1.1
+  searches: local
+
+persistence:
+  ## Persistent Volume Storage Class
+  ## If defined, storageClassName: <storageClass>
+  ## If set to "-", storageClassName: "", which disables dynamic provisioning
+  ## If undefined (the default) or set to null, no storageClassName spec is
+  ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+  ##   GKE, AWS & OpenStack)
+  ##
+  # storageClass: "-"
+  size: 20Gi
+  annotations: {}
+  accessModes:
+    - ReadWriteOnce
+
+secret:
+  username: ""
+  password: ""

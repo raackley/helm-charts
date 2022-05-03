@@ -1,0 +1,74 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "transmission-vpn.fullname" . }}
+  labels:
+    {{- include "transmission-vpn.selectorLabels" . | nindent 4 }}
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      {{- include "transmission-vpn.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "transmission-vpn.selectorLabels" . | nindent 8 }}
+    spec:
+      containers:
+        - name: transmission-vpn
+          image: "{{ .Values.image.repository }}:{{ .Chart.AppVersion }}"
+          env:
+            - name: CREATE_TUN_DEVICE
+              value: {{ .Values.env.createTunDevice | quote }}
+            - name: OPENVPN_CONFIG
+              value: {{ .Values.env.openvpnConfig | quote }}
+            - name: OPENVPN_PROVIDER
+              value: {{ .Values.env.openvpnProvider | quote }}
+            - name: OPENVPN_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: openvpn-secrets
+                  key: username
+            - name: OPENVPN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: openvpn-secrets
+                  key: password
+            - name: WEBPROXY_ENABLED
+              value: {{ .Values.env.webproxyEnabled | quote }}
+            - name: LOCAL_NETWORK
+              value: {{ .Values.env.localNetwork | quote }}
+            - name: TRANSMISSION_RATIO_LIMIT
+              value: {{ .Values.env.transmissionRatioLimit | quote }}
+            - name: TRANSMISSION_RATIO_LIMIT_ENABLED
+              value: {{ .Values.env.transmissionRatioLimitEnabled | quote }}
+            - name: TRANSMISSION_WATCH_DIR_ENABLED
+              value: {{ .Values.env.transmissionWatchDirEnabled | quote }}
+          ports:
+            - containerPort: {{ .Values.port}}
+              protocol: TCP
+          volumeMounts:
+            - mountPath: /data
+              name: data
+            - mountPath: /etc/localtime
+              name: localtime
+              readOnly: true
+          securityContext:
+            capabilities:
+              add:
+                - NET_ADMIN
+      dnsPolicy: "None"
+      dnsConfig:
+        nameservers:
+          - {{ .Values.dns.nameserver}}
+        searches:
+          - {{ .Values.dns.searches}}
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: {{ include "transmission-vpn.fullname" . }}
+        - name: localtime
+          hostPath:
+            path: /etc/localtime
