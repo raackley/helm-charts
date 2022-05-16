@@ -2,41 +2,36 @@ stages:
   - package
   - upload
 
+.parallel:
+  parallel:
+    matrix:
+      - CHART: [wireguard, transmission-vpn] 
+
 .upload:
   stage: upload
   variables:
     CHANNEL: test
   image: curlimages/curl:latest
   script:
-    - CHARTFILE=$(ls ${PACKAGE}-*.tgz)
+    - CHARTFILE=$(ls ${CHART}-*.tgz)
     - 'curl --request POST --user gitlab-ci-token:$CI_JOB_TOKEN --form "chart=@${CHARTFILE}" "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/helm/api/${CHANNEL}/charts"'
+  parallel: !reference [.parallel,parallel]
 
-.package:
+package:
   stage: package
   image: raackley/gitlab-runner:latest
   script:
-    - helm package charts/${PACKAGE}/
+    - helm package charts/${CHART}/
   artifacts:
     paths:
-      - "${PACKAGE}-*.tgz"
+      - "${CHART}-*.tgz"
     expire_in: 1 week
   rules:
     - if: '$CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH'
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+  parallel: !reference [.parallel,parallel]
 
-package-wireguard:
-  extends:
-    - .package
-  variables:
-    PACKAGE: wireguard
-
-package-transmission-vpn:
-  extends:
-    - .package
-  variables:
-    PACKAGE: transmission-vpn
-
-.upload-test:
+upload-test:
   extends:
     - .upload
   variables:
@@ -44,34 +39,10 @@ package-transmission-vpn:
   rules:
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
 
-upload-test-wireguard:
-  extends:
-    - .upload-test
-  variables:
-    PACKAGE: wireguard
-
-upload-test-transmission-vpn:
-  extends:
-    - .upload-test
-  variables:
-    PACKAGE: transmission-vpn
-
-.upload-stable:
+upload-stable:
   extends:
     - .upload
   variables:
     CHANNEL: stable
   rules:
     - if: '$CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH'
-
-upload-stable-wireguard:
-  extends:
-    - .upload-stable
-  variables:
-    PACKAGE: wireguard
-
-upload-stable-transmission-vpn:
-  extends:
-    - .upload-stable
-  variables:
-    PACKAGE: transmission-vpn
