@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: piaware
+  labels:
+    app: piaware
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: piaware
+  template:
+    metadata:
+      labels:
+        app: piaware
+    spec:
+      containers:
+      - name: piaware
+        image: mikenye/piaware:latest
+        env:
+        - name: TZ
+          value: {{ .Values.timezone | quote }}
+        - name: LAT
+          value: {{ .Values.lat | quote }}
+        - name: LONG
+          value: {{ .Values.lon | quote }}
+        - name: RECEIVER_TYPE
+          value: {{ .Values.piaware.receiver_type | quote }}
+        - name: BEASTHOST
+          value: {{ .Values.beast.host | quote }}
+        - name: BEASTPORT
+          value: {{ .Values.beast.port | quote }}
+        - name: FEEDER_ID
+          value: {{ .Values.piaware.feeder_id | quote }}

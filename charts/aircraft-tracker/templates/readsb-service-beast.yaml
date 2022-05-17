@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.beast.host }}
+spec:
+  selector:
+    app: readsb
+  ports:
+    - protocol: TCP
+      port: {{ .Values.beast.port }}
+      targetPort: {{ .Values.beast.port }}
