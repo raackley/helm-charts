@@ -1,0 +1,31 @@
+# Default values for aircraft-tracker.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+timezone: "America/New_York"
+
+lat: ""
+lon: ""
+
+readsb:
+  dcfilter: "true"
+  device_type: "rtlsdr"
+  fix: "true"
+  gain: "autogain"
+  modeac: "true"
+  rx_location_accuracy: "2"
+  stats_range: "true"
+  net_enable: "true"
+  rtl_device_path: ""
+
+beast:
+  host: "readsb-beast"
+  port: "30005"
+
+piaware:
+  receiver_type: "relay"
+  feeder_id: ""
+
+fr24feed:
+  mlat: "yes"
+  key: ""

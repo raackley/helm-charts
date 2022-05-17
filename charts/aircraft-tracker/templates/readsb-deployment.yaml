@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: readsb
+  labels:
+    app: readsb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: readsb
+  template:
+    metadata:
+      labels:
+        app: readsb
+    spec:
+      containers:
+      - name: readsb
+        image: mikenye/readsb-protobuf
+        env:
+        - name: TZ
+          value: {{ .Values.timezone | quote }}
+        - name: READSB_DCFILTER
+          value: {{ .Values.readsb.dcfilter | quote }}
+        - name: READSB_DEVICE_TYPE
+          value: {{ .Values.readsb.device_type | quote }}
+        - name: READSB_FIX
+          value: {{ .Values.readsb.fix | quote }}
+        - name: READSB_GAIN
+          value: {{ .Values.readsb.gain | quote }}
+        - name: READSB_LAT
+          value: {{ .Values.lat | quote }}
+        - name: READSB_LON
+          value: {{ .Values.lon | quote }}
+        - name: READSB_MODEAC
+          value: {{ .Values.readsb.modeac | quote }}
+        - name: READSB_RX_LOCATION_ACCURACY
+          value: {{ .Values.readsb.rx_location_accuracy | quote }}
+        - name: READSB_STATS_RANGE
+          value: {{ .Values.readsb.stats_range | quote }}
+        - name: READSB_NET_ENABLE
+          value: {{ .Values.readsb.net_enable | quote }}
+        volumeMounts:
+        - mountPath: /run/collectd
+          name: readsbpb-rrd
+        - mountPath: /run/autogain
+          name: readsbpb-autogain
+        - mountPath: {{ .Values.readsb.rtl_device_path }}
+          name: rtl-device
+        securityContext:
+          privileged: true
+        ports:
+        - containerPort: 8080
+        - containerPort: {{ .Values.beast.port }}
+      volumes:
+      - name: readsbpb-rrd
+        emptyDir: {}
+      - name: readsbpb-autogain
+        emptyDir: {}
+      - name: rtl-device
+        hostPath:
+          path: {{ .Values.readsb.rtl_device_path }}
+      nodeSelector:
+        readsb: 'true'
