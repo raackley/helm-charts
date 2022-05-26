@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: adsbx
+  labels:
+    app: adsbx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: adsbx
+  template:
+    metadata:
+      labels:
+        app: adsbx
+    spec:
+      containers:
+      - name: adsbx
+        image: ghcr.io/sdr-enthusiasts/docker-adsbexchange:latest
+        env:
+        - name: TZ
+          value: {{ .Values.timezone | quote }}
+        - name: LAT
+          value: {{ .Values.lat | quote }}
+        - name: LONG
+          value: {{ .Values.lon | quote }}
+        - name: ALT
+          value: {{ .Values.alt }}ft
+        - name: BEASTHOST
+          value: {{ .Values.beast.host | quote }}
+        - name: BEASTPORT
+          value: {{ .Values.beast.port | quote }}
+        - name: SITENAME
+          value: {{ .Values.adsbx.sitename | quote }}
+        - name: UUID
+          value: {{ .Values.adsbx.uuid | quote }}

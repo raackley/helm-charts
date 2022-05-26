@@ -4,8 +4,9 @@
 
 timezone: "America/New_York"
 
-lat: ""
-lon: ""
+lat: ""  # feeder latitude
+lon: ""  # feeder longitude
+alt: ""  # feeder altitude, just the number, in feet
 
 readsb:
   dcfilter: "true"
@@ -29,3 +30,7 @@ piaware:
 fr24feed:
   mlat: "no"
   key: ""
+
+adsbx:
+  sitename: ""
+  uuid: ""  # cat /proc/sys/kernel/random/uuid
