@@ -8,6 +8,8 @@ Deployment that seds data to FlightAware is based on: [https://github.com/sdr-en
 
 Deployment that sends data to FlightRadar24 is based on: [https://github.com/sdr-enthusiasts/docker-flightradar24](https://github.com/sdr-enthusiasts/docker-flightradar24)
 
+Deployment that sends data to ADSB Exchange is based on: [https://github.com/sdr-enthusiasts/docker-adsbexchange](https://github.com/sdr-enthusiasts/docker-adsbexchange)
+
 ## Installation
 
 Add and update the Helm repo.
