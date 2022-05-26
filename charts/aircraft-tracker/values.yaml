@@ -27,5 +27,5 @@ piaware:
   feeder_id: ""
 
 fr24feed:
-  mlat: "yes"
+  mlat: "no"
   key: ""
