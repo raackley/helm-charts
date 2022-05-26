@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: piaware
-        image: mikenye/piaware:latest
+        image: ghcr.io/sdr-enthusiasts/docker-piaware:latest
         env:
         - name: TZ
           value: {{ .Values.timezone | quote }}

@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: readsb
-        image: mikenye/readsb-protobuf
+        image: ghcr.io/sdr-enthusiasts/docker-readsb-protobuf:latest
         env:
         - name: TZ
           value: {{ .Values.timezone | quote }}
