@@ -1,0 +1,15 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: {{ include "ping.fullname" . }}
+spec:
+  entryPoints:
+    - {{ .Values.entryPoint }}
+  routes:
+    - kind: Rule
+      match: Host("{{ .Values.route.hostname }}") && PathPrefix("{{ .Values.route.path }}")
+      services:
+        - name: "{{ include "ping.fullname" . }}-nginx"
+          port: 80
+  tls:
+    certResolver: {{ .Values.tls.certResolver }}
