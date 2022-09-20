@@ -5,7 +5,7 @@ stages:
 .parallel:
   parallel:
     matrix:
-      - CHART: [wireguard, transmission-vpn, aircraft-tracker] 
+      - CHART: [wireguard, transmission-vpn, aircraft-tracker, ping] 
 
 .upload:
   stage: upload
@@ -21,6 +21,7 @@ package:
   stage: package
   image: raackley/gitlab-runner:latest
   script:
+    - helm dependency update charts/${CHART}/
     - helm package charts/${CHART}/
   artifacts:
     paths:
