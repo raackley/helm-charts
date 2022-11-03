@@ -5,7 +5,7 @@ stages:
 .parallel:
   parallel:
     matrix:
-      - CHART: [wireguard, transmission-vpn, aircraft-tracker, ping] 
+      - CHART: [wireguard, transmission-vpn, aircraft-tracker, ping, ingressroute] 
 
 .upload:
   stage: upload
