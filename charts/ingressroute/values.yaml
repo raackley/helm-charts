@@ -1,0 +1,15 @@
+name: ingressroute
+
+entryPoint: example-entrypoint
+
+route:
+  hostname: example.com
+  path: /
+
+service:
+  name: example-service
+  port: 80
+
+tls:
+  enabled: false
+  certResolver: example-resolver
