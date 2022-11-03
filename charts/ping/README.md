@@ -17,5 +17,5 @@ helm repo update
 Install (Helm v3).
 
 ```
-helm install <release name> -n <namespace> --create-namespace raackley-stable/ping
+helm install <release name> --set ingressroute.service.name=<release name>-nginx -n <namespace> --create-namespace raackley-stable/ping
 ```

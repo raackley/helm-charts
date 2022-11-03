@@ -15,11 +15,15 @@ nginx:
       }
     }
 
-route:
-  hostname: "example.com"
-  path: "/ping"
-
-entryPoint: websecure
-
-tls:
-  certResolver: "myresolver"
+ingressroute:
+  name: ping-ingressroute
+  entryPoint: websecure
+  route:
+    hostname: "example.com"
+    path: "/ping"
+  service:
+    name: release-name-nginx
+    port: 80
+  tls:
+    enabled: true
+    certResolver: "myresolver"
