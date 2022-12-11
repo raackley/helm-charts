@@ -14,11 +14,11 @@ This is a collection of various Helm Charts.  Each Helm Chart is in it's own sub
 Charts in this project are stored in a GitLab Package Repo.  To install the Helm repo, run the following.
 
 ```
-helm repo add raackley-stable https://gitlab.com/api/v4/projects/34881477/packages/helm/stable
+helm repo add raackley-charts https://charts.ryanackley.com
 ```
 
 There is also a testing repo you can optionally use.  This repo is only updated from Merge Request branches.
 
 ```
-helm repo add raackley-stable https://gitlab.com/api/v4/projects/34881477/packages/helm/test
+helm repo add raackley-charts-test https://charts-test.ryanackley.com
 ```
