@@ -9,7 +9,7 @@ This helm chart is based off of [this](https://github.com/haugene/docker-transmi
 Add and update the Helm repo.
 
 ```
-helm repo add raackley-stable https://gitlab.com/api/v4/projects/34881477/packages/helm/stable
+helm repo add raackley-charts https://charts.ryanackley.com
 ```
 
 ```

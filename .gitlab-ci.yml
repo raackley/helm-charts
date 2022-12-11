@@ -1,5 +1,4 @@
 stages:
-  - package
   - upload
 
 .parallel:
@@ -9,34 +8,19 @@ stages:
 
 .upload:
   stage: upload
-  variables:
-    CHANNEL: test
-  image: curlimages/curl:latest
-  script:
-    - CHARTFILE=$(ls ${CHART}-*.tgz)
-    - 'curl --request POST --user gitlab-ci-token:$CI_JOB_TOKEN --form "chart=@${CHARTFILE}" "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/helm/api/${CHANNEL}/charts"'
-  parallel: !reference [.parallel,parallel]
-
-package:
-  stage: package
   image: raackley/gitlab-runner:latest
   script:
     - helm dependency update charts/${CHART}/
-    - helm package charts/${CHART}/
-  artifacts:
-    paths:
-      - "${CHART}-*.tgz"
-    expire_in: 1 week
-  rules:
-    - if: '$CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH'
-    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+    - helm cm-push charts/${CHART}/ $REPO_URL -f -u $USER -p $PASS
   parallel: !reference [.parallel,parallel]
 
 upload-test:
   extends:
     - .upload
   variables:
-    CHANNEL: test
+    USER: $TEST_USER
+    PASS: $TEST_PASS
+    REPO_URL: $TEST_REPO_URL
   rules:
     - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
 
@@ -44,6 +28,8 @@ upload-stable:
   extends:
     - .upload
   variables:
-    CHANNEL: stable
+    USER: $STABLE_USER
+    PASS: $STABLE_PASS
+    REPO_URL: $STABLE_REPO_URL
   rules:
     - if: '$CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH'
