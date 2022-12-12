@@ -1,18 +1,13 @@
 stages:
   - upload
 
-.parallel:
-  parallel:
-    matrix:
-      - CHART: [wireguard, transmission-vpn, aircraft-tracker, ping, ingressroute] 
-
 .upload:
   stage: upload
-  image: raackley/gitlab-runner:latest
+  image: alpine:latest
   script:
-    - helm dependency update charts/${CHART}/
-    - helm cm-push charts/${CHART}/ $REPO_URL -f -u $USER -p $PASS
-  parallel: !reference [.parallel,parallel]
+    - apk add curl
+    - apk add helm
+    - ./build_and_upload.sh
 
 upload-test:
   extends:
