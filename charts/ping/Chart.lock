@@ -1,9 +1,9 @@
 dependencies:
 - name: nginx
   repository: https://charts.bitnami.com/bitnami
-  version: 13.2.12
+  version: 13.2.16
 - name: ingressroute
-  repository: https://gitlab.com/api/v4/projects/34881477/packages/helm/stable
+  repository: https://charts.ryanackley.com
   version: 0.1.5
-digest: sha256:7a9bf4124c82ee14070fe9dfe52774d69eb5cdd2fc8b500ae18bd5e8976f304e
-generated: "2022-11-03T00:38:59.0341114-04:00"
+digest: sha256:45331a82310bb965c67c37951df8216060ff83f7bade6b7adab9a02858a3d67a
+generated: "2022-12-12T21:09:44.6088224-05:00"
