@@ -5,7 +5,7 @@ set -e
 for CHART in $(ls charts); do
     echo "#####"
     echo "Chart: ${CHART}"
-    VERSION=$(cat charts/${CHART}/Chart.yaml | grep version: | cut -d' ' -f2)
+    VERSION=$(cat charts/${CHART}/Chart.yaml | grep version: | cut -d' ' -f2 | tr -d [:cntrl:])
     echo "Version: ${VERSION}"
 
     set +e
