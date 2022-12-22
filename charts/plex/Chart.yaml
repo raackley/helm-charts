@@ -1,29 +1,19 @@
+---
 apiVersion: v2
-appVersion: "1.29.1.631"
+appVersion: 1.30.0.6486-629d58034-ls147
+description: Plex Media Server
+name: plex
+version: 11.0.2
+kubeVersion: ">=1.22.0-0"
 dependencies:
   - name: common
-    repository: https://library-charts.truecharts.org
-    version: 10.7.13
-deprecated: false
-description: Plex Media Server
-home: https://truecharts.org/docs/charts/stable/plex
-icon: https://truecharts.org/img/hotlink-ok/chart-icons/plex.png
-keywords:
-  - plex
-  - plex-media-server
-kubeVersion: ">=1.16.0-0"
-maintainers:
-  - email: info@truecharts.org
-    name: TrueCharts
-    url: https://truecharts.org
-name: plex
-sources:
-  - https://github.com/truecharts/charts/tree/master/charts/stable/plex
-  - https://github.com/k8s-at-home/container-images/pkgs/container/plex
-type: application
-version: 10.2.22
+    repository: https://bjw-s.github.io/helm-charts
+    version: 1.2.0
 annotations:
-  truecharts.org/catagories: |
-    - media
-  truecharts.org/SCALE-support: "true"
-  truecharts.org/grade: U
+  artifacthub.io/changes: |-
+    - kind: changed
+      description: |
+        Updated library version to 1.2.0.
+      links:
+        - name: Common library chart definition
+          url: https://github.com/bjw-s/helm-charts/blob/main/charts/library/common/Chart.yaml

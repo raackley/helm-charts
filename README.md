@@ -6,6 +6,7 @@ This is a collection of various Helm Charts.  Each Helm Chart is in it's own sub
 ## Helm Charts
 * Wireguard Server
 * Transmission Bittorrent Server with VPN
+* Plex Server
 * Aircraft Tracker
 * "Ping"
 * IngressRoute
