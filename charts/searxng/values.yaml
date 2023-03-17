@@ -1,0 +1,45 @@
+image:
+  pullPolicy: IfNotPresent
+  repository: searxng/searxng
+  tag: ""
+
+env:
+  BASE_URL: ""
+  INSTANCE_NAME: SearXNG
+
+controller:
+  replicas: 1
+  strategy: RollingUpdate
+
+podSecurityContext:
+  runAsGroup: 0
+  runAsUser: 0
+
+securityContext:
+  readOnlyRootFilesystem: false
+  runAsNonRoot: false
+
+service:
+  main:
+    ports:
+      http:
+        port: 8080
+        protocol: TCP
+        targetPort: 8080
+
+persistence:
+  config:
+    enabled: false
+    mountPath: /etc/searxng
+    size: 1Gi
+
+ingress:
+  main:
+    enabled: false
+    hosts:
+      - host: chart-example.local
+        paths:
+          - path: /
+            pathType: Prefix
+            service:
+              port: http
