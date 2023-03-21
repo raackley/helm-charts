@@ -3,12 +3,12 @@ kind: Service
 metadata:
   name: {{ include "transmission-vpn.fullname" . }}
   labels:
-    {{- include "transmission-vpn.selectorLabels" . | nindent 4 }}
+    {{- include "transmission-vpn.labels" . | nindent 4 }}
 spec:
-  type: LoadBalancer
+  type: {{ .Values.service.type }}
   ports:
-    - port: {{ .Values.port}}
-      targetPort: {{ .Values.port}}
+    - port: {{ .Values.service.port }}
+      targetPort: {{ .Values.service.port }}
       protocol: TCP
   selector:
     {{- include "transmission-vpn.selectorLabels" . | nindent 4 }}
