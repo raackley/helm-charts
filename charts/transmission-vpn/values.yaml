@@ -10,7 +10,7 @@ image:
 
 env:
   createTunDevice: "true"
-  openvpnConfig: "hk-hkg_udp"
+  openvpnConfig: "hk-hkg.prod.surfshark.com_udp"
   openvpnProvider: "SURFSHARK"
   webproxyEnabled: "false"
   localNetwork: "192.168.0.0/24"
@@ -51,10 +51,16 @@ persistence:
   ##   GKE, AWS & OpenStack)
   ##
   # storageClass: "-"
-  size: 20Gi
-  annotations: {}
-  accessModes:
-    - ReadWriteOnce
+  data:
+    size: 20Gi
+    annotations: {}
+    accessModes:
+      - ReadWriteOnce
+  config:
+    size: 1Gi
+    annotations: {}
+    accessModes:
+      - ReadWriteOnce
 
 secret:
   username: ""

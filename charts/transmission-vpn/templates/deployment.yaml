@@ -52,6 +52,8 @@ spec:
           volumeMounts:
             - mountPath: /data
               name: data
+            - mountPath: /config
+              name: config
             - mountPath: /etc/localtime
               name: localtime
               readOnly: true
@@ -68,7 +70,10 @@ spec:
       volumes:
         - name: data
           persistentVolumeClaim:
-            claimName: {{ include "transmission-vpn.fullname" . }}
+            claimName: "{{ include "transmission-vpn.fullname" . }}-data"
+        - name: config
+          persistentVolumeClaim:
+            claimName: "{{ include "transmission-vpn.fullname" . }}-config"
         - name: localtime
           hostPath:
             path: /etc/localtime
