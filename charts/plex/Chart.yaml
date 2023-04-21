@@ -1,9 +1,9 @@
 ---
 apiVersion: v2
-appVersion: 1.31.1.6733-bc0674160-ls154
+appVersion: 1.32.0.6973-a787c5a8e-ls164
 description: Plex Media Server
 name: plex
-version: 11.0.4
+version: 11.0.5
 kubeVersion: ">=1.22.0-0"
 dependencies:
   - name: common
