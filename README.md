@@ -12,6 +12,7 @@ This is a collection of various Helm Charts.  Each Helm Chart is in it's own sub
 * IngressRoute
 * SearXNG
 * Sonarr
+* Prowlarr
 
 ## Chart Repository
 Charts in this project are stored in a GitLab Package Repo.  To install the Helm repo, run the following.

@@ -1,0 +1,41 @@
+image:
+  pullPolicy: IfNotPresent
+  repository: linuxserver/prowlarr
+  tag: ""
+
+service:
+  main:
+    ports:
+      http:
+        port: 9696
+        protocol: TCP
+        targetPort: 9696
+
+probes:
+  liveness:
+    enabled: true
+    type: "HTTP"
+  readiness:
+    enabled: false
+  startup:
+    enabled: true
+    type: "HTTP"
+
+
+persistence:
+  config:
+    enabled: false
+    mountPath: /config
+    accessMode: ReadWriteOnce
+    size: 1Gi
+
+ingress:
+  main:
+    enabled: false
+    hosts:
+      - host: chart-example.local
+        paths:
+          - path: /
+            pathType: Prefix
+            service:
+              port: http
