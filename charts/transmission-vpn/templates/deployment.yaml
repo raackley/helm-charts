@@ -46,6 +46,10 @@ spec:
               value: {{ .Values.env.transmissionRatioLimitEnabled | quote }}
             - name: TRANSMISSION_WATCH_DIR_ENABLED
               value: {{ .Values.env.transmissionWatchDirEnabled | quote }}
+            - name: DOWNLOAD_DIR
+              value: {{ .Values.env.downloadDir | quote }}
+            - name: INCOMPLETE_DIR
+              value: {{ .Values.env.incompleteDir | quote }}
           ports:
             - containerPort: {{ .Values.service.port }}
               protocol: TCP
@@ -57,6 +61,11 @@ spec:
             - mountPath: /etc/localtime
               name: localtime
               readOnly: true
+            {{- if .Values.nfs.enabled }}
+            - mountPath: {{ .Values.nfs.mountPath }}
+              name: nfs-vol
+              readOnly: false
+            {{- end }}
           securityContext:
             capabilities:
               add:
@@ -77,3 +86,9 @@ spec:
         - name: localtime
           hostPath:
             path: /etc/localtime
+        {{- if .Values.nfs.enabled }}
+        - name: nfs-vol
+          nfs:
+            server: {{ .Values.nfs.server }}
+            path: {{ .Values.nfs.path }}
+        {{- end }}

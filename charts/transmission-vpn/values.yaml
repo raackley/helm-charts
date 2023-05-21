@@ -17,6 +17,8 @@ env:
   transmissionRatioLimit: "0"
   transmissionRatioLimitEnabled: "true"
   transmissionWatchDirEnabled: "false"
+  downloadDir: "/data/completed"
+  incompleteDir: "/tmp/incomplete"
 
 service:
   type: ClusterIP
@@ -41,6 +43,12 @@ ingress:
 dns:
   nameserver: 1.1.1.1
   searches: local
+
+nfs:
+  enabled: false
+  server: 10.0.0.100
+  path: /server/nfs
+  mountPath: /nfsmount
 
 persistence:
   ## Persistent Volume Storage Class
