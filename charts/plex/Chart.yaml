@@ -1,19 +1,11 @@
 ---
 apiVersion: v2
-appVersion: 1.32.1.6999-91e1e2e2c-ls167
+appVersion: 1.32.2.7100-248a2daf0-ls168
 description: Plex Media Server
 name: plex
-version: 11.0.6
+version: 11.0.7
 kubeVersion: ">=1.22.0-0"
 dependencies:
   - name: common
     repository: https://bjw-s.github.io/helm-charts
     version: 1.2.0
-annotations:
-  artifacthub.io/changes: |-
-    - kind: changed
-      description: |
-        Updated library version to 1.2.0.
-      links:
-        - name: Common library chart definition
-          url: https://github.com/bjw-s/helm-charts/blob/main/charts/library/common/Chart.yaml
