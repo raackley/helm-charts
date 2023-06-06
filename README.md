@@ -4,16 +4,17 @@
 This is a collection of various Helm Charts.  Each Helm Chart is in it's own subdirectory with specific instructions for usage.
 
 ## Helm Charts
-* Wireguard Server
-* Transmission Bittorrent Server with VPN
-* Plex Server
 * Aircraft Tracker
-* "Ping"
 * IngressRoute
+* Lidarr
+* "Ping"
+* Prowlarr
+* Plex Server
 * Radarr
 * SearXNG
 * Sonarr
-* Prowlarr
+* Transmission Bittorrent Server with VPN
+* Wireguard Server
 
 ## Chart Repository
 Charts in this project are stored in a GitLab Package Repo.  To install the Helm repo, run the following.
