@@ -10,6 +10,7 @@ This is a collection of various Helm Charts.  Each Helm Chart is in it's own sub
 * Aircraft Tracker
 * "Ping"
 * IngressRoute
+* Radarr
 * SearXNG
 * Sonarr
 * Prowlarr
