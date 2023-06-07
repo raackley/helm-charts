@@ -1,0 +1,46 @@
+image:
+  pullPolicy: IfNotPresent
+  repository: linuxserver/tautulli
+  tag: ""
+
+env:
+  TZ: UTC
+  PUID: "1000"
+  PGID: "1000"
+
+service:
+  main:
+    ports:
+      http:
+        port: 8181
+        protocol: TCP
+        targetPort: 8181
+
+probes:
+  liveness:
+    enabled: true
+    type: "HTTP"
+  readiness:
+    enabled: false
+  startup:
+    enabled: true
+    type: "HTTP"
+
+
+persistence:
+  config:
+    enabled: false
+    mountPath: /config
+    accessMode: ReadWriteOnce
+    size: 1Gi
+
+ingress:
+  main:
+    enabled: false
+    hosts:
+      - host: chart-example.local
+        paths:
+          - path: /
+            pathType: Prefix
+            service:
+              port: http
