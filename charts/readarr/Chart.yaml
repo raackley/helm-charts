@@ -1,0 +1,10 @@
+---
+apiVersion: v2
+appVersion: 0.1.7-develop
+description: Readarr
+name: readarr
+version: 0.1.2
+dependencies:
+  - name: common
+    version: 1.5.0
+    repository: https://bjw-s.github.io/helm-charts/
