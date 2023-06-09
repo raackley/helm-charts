@@ -5,6 +5,7 @@ This is a collection of various Helm Charts.  Each Helm Chart is in it's own sub
 
 ## Helm Charts
 * Aircraft Tracker
+* Ansible Semaphore
 * IngressRoute
 * Lidarr
 * "Ping"
