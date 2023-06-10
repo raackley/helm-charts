@@ -5,18 +5,20 @@ image:
 
 env:
   SEMAPHORE_DB_DIALECT: bolt
+  SEMAPHORE_DB_HOST: /home/semaphore/database.boltdb
   SEMAPHORE_ADMIN_PASSWORD: changeme #initial install only
   SEMAPHORE_ADMIN_NAME: admin
   SEMAPHORE_ADMIN_EMAIL: admin@localhost
   SEMAPHORE_ADMIN: admin
+  SEMAPHORE_ACCESS_KEY_ENCRYPTION: gs72mPntFATGJs9qK0pQ0rKtfidlexiMjYCH9gWKhTU= #change this: head -c32 /dev/urandom | base64
 
 initContainers:
   volume-permissions:
     image: busybox
-    command: ['sh', '-c', 'chown -R 1001 /var/lib/semaphore/']
+    command: ['sh', '-c', 'chown -R 1001 /home/semaphore/']
     volumeMounts:
-      - name: db
-        mountPath: /var/lib/semaphore/
+      - name: home
+        mountPath: /home/semaphore/
 
 service:
   main:
@@ -36,11 +38,19 @@ probes:
     enabled: false
 
 persistence:
-  db:
+  home:
     enabled: true
-    mountPath: /var/lib/semaphore/
+    mountPath: /home/semaphore/
     accessMode: ReadWriteOnce
     size: 1Gi
+
+resources:
+  limits:
+    cpu: 1000m
+    memory: 128Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
 
 ingress:
   main:
