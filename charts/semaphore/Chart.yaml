@@ -3,7 +3,7 @@ apiVersion: v2
 appVersion: v2.8.90
 description: Anisible-Semaphore
 name: semaphore
-version: 0.2.3
+version: 0.2.4
 dependencies:
   - name: common
     version: 1.5.1
