@@ -50,6 +50,14 @@ spec:
               value: {{ .Values.env.downloadDir | quote }}
             - name: INCOMPLETE_DIR
               value: {{ .Values.env.incompleteDir | quote }}
+            {{- if .Values.env.puid }}
+            - name: PUID
+              value: {{ .Values.env.puid | quote }}
+            {{- end }}
+            {{- if .Values.env.pgid }}
+            - name: PGID
+              value: {{ .Values.env.pgid | quote }}
+            {{- end }}
           ports:
             - containerPort: {{ .Values.service.port }}
               protocol: TCP
