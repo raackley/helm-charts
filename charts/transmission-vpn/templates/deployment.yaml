@@ -46,9 +46,9 @@ spec:
               value: {{ .Values.env.transmissionRatioLimitEnabled | quote }}
             - name: TRANSMISSION_WATCH_DIR_ENABLED
               value: {{ .Values.env.transmissionWatchDirEnabled | quote }}
-            - name: DOWNLOAD_DIR
+            - name: TRANSMISSION_DOWNLOAD_DIR
               value: {{ .Values.env.downloadDir | quote }}
-            - name: INCOMPLETE_DIR
+            - name: TRANSMISSION_INCOMPLETE_DIR
               value: {{ .Values.env.incompleteDir | quote }}
             {{- if .Values.env.puid }}
             - name: PUID
