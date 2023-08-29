@@ -1,9 +1,9 @@
 ---
 apiVersion: v2
-appVersion: 4.5.2
+appVersion: 4.7.5
 description: Radarr
 name: radarr
-version: 0.1.2
+version: 0.1.3
 dependencies:
   - name: common
     version: 1.5.0
