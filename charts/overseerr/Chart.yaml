@@ -1,0 +1,10 @@
+---
+apiVersion: v2
+appVersion: 1.33.2
+description: Overseerr
+name: overseerr
+version: 0.1.0
+dependencies:
+  - name: common
+    version: 1.5.0
+    repository: https://bjw-s.github.io/helm-charts/
