@@ -8,14 +8,15 @@ This is a collection of various Helm Charts.  Each Helm Chart is in it's own sub
 * Ansible Semaphore
 * IngressRoute
 * Lidarr
+* Overseerr
 * "Ping"
-* Prowlarr
 * Plex Server
+* Prowlarr
 * Radarr
 * Readarr
 * SearXNG
 * Sonarr
-* tautulli
+* Tautulli
 * Transmission Bittorrent Server with VPN
 * Wireguard Server
 
