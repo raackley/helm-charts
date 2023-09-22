@@ -1,0 +1,47 @@
+image:
+  pullPolicy: IfNotPresent
+  repository: modem7/wordle  # https://hub.docker.com/r/modem7/wordle
+  tag: latest  # alternate tag: legacy
+
+controller:
+  replicas: 2
+  strategy: RollingUpdate
+
+service:
+  main:
+    ports:
+      http:
+        port: 8080
+        protocol: TCP
+        targetPort: 8080
+
+probes:
+  liveness:
+    enabled: true
+    type: HTTP
+    path: /  # use /healthz with legacy
+  readiness:
+    enabled: false
+  startup:
+    enabled: true
+    type: HTTP
+    path: /  # use /healthz with legacy
+
+resources:
+  limits:
+    cpu: 20m
+    memory: 25Mi
+  requests:
+    cpu: 20m
+    memory: 25Mi
+
+ingress:
+  main:
+    enabled: false
+    hosts:
+      - host: chart-example.local
+        paths:
+          - path: /
+            pathType: Prefix
+            service:
+              port: http
