@@ -1,0 +1,31 @@
+controllers:
+  main:
+    type: cronjob
+    cronjob:
+      schedule: "0 0 * * *" # Every day at 12:00 AM
+      startingDeadlineSeconds: 120
+    containers:
+      main:
+        image:
+          pullPolicy: IfNotPresent
+          repository: raackley/reddit-history-deleter
+          tag: latest
+        env:
+          RHD_USERNAME: "<Reddit username>"
+          RHD_PASSWORD: "<Reddit password>"
+          RHD_CLIENT_ID: "<Reddit app ID>"
+          RHD_CLIENT_SECRET: "<Reddit app secret>"
+          RHD_EXPIRATION_DAYS: 365
+          RHD_MODE: delete
+          RHD_OVERWRITE_MESSAGE: "<your overwrite message>"
+
+service:
+  main:
+    enabled: false
+
+resources:
+  limits:
+    memory: 25Mi
+  requests:
+    cpu: 20m
+    memory: 25Mi
