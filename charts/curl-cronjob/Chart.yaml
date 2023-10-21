@@ -1,0 +1,9 @@
+---
+apiVersion: v2
+description: "Curl Cronjob"
+name: curl-cronjob
+version: 0.1.0
+dependencies:
+  - name: common
+    version: 2.0.3
+    repository: https://bjw-s.github.io/helm-charts/
