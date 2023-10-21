@@ -1,0 +1,25 @@
+controllers:
+  main:
+    type: cronjob
+    cronjob:
+      schedule: "0 0 * * *" # Every day at 12:00 AM
+      startingDeadlineSeconds: 120
+    containers:
+      main:
+        image:
+          pullPolicy: IfNotPresent
+          repository: curlimages/curl
+          tag: latest
+        args:
+          - https://icanhazip.com # your url here
+
+service:
+  main:
+    enabled: false
+
+resources:
+  limits:
+    memory: 25Mi
+  requests:
+    cpu: 20m
+    memory: 25Mi
