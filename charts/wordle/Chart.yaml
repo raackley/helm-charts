@@ -2,7 +2,7 @@
 apiVersion: v2
 description: Wordle
 name: wordle
-version: 0.1.5
+version: 0.1.6
 dependencies:
   - name: common
     version: 1.5.1
