@@ -1,6 +1,6 @@
 ---
 apiVersion: v2
-appVersion: 3.0.10
+appVersion: 3.0.10 # https://fleet.linuxserver.io/image?name=linuxserver/sonarr
 description: Sonarr
 name: sonarr
 version: 0.1.2
