@@ -20,6 +20,7 @@ This is a collection of various Helm Charts.  Each Helm Chart is in it's own sub
 * Sonarr
 * Tautulli
 * Transmission Bittorrent Server with VPN
+* VPN Proxy
 * Wireguard Server
 * Wordle
 

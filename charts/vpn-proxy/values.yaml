@@ -1,0 +1,28 @@
+controllers:
+  main:
+    replicas: 1
+    strategy: RollingUpdate
+    containers:
+      main:
+        image:
+          pullPolicy: IfNotPresent
+          repository: ghcr.io/qdm12/gluetun
+          tag: "{{.Chart.AppVersion}}"
+        env:
+          HTTPPROXY: "on"
+          FIREWALL_INPUT_PORTS: "8888"
+          OPENVPN_USER: "<your openvpn user>"
+          OPENVPN_PASSWORD: "<your openvpn password>"
+          VPN_SERVICE_PROVIDER: "surfshark"
+        securityContext:
+            capabilities:
+              add:
+                - NET_ADMIN
+
+service:
+  main:
+    ports:
+      http:
+        port: 8888
+        targetPort: 8888
+    type: LoadBalancer
