@@ -1,0 +1,11 @@
+---
+apiVersion: v2
+appVersion: v3.37 # https://github.com/qdm12/gluetun/pkgs/container/gluetun
+description: VPNProxy
+name: vpn-proxy
+version: 0.1.0
+kubeVersion: ">=1.22.0-0"
+dependencies:
+  - name: common
+    repository: https://bjw-s.github.io/helm-charts
+    version: 2.4.0
