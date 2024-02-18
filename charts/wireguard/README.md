@@ -1,5 +1,7 @@
 # Wireguard
 
+DEPRECATED: Please use wg-easy instead.
+
 This helm chart will install a Wireguard server.
 
 ## Installation

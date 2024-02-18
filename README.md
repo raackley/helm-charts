@@ -21,6 +21,7 @@ This is a collection of various Helm Charts.  Each Helm Chart is in it's own sub
 * Tautulli
 * Transmission Bittorrent Server with VPN
 * VPN Proxy
+* wg-easy
 * Wireguard Server
 * Wordle
 
