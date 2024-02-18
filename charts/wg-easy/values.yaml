@@ -34,12 +34,16 @@ controllers:
 
 service:
   main:
-    type: LoadBalancer
-    # loadBalancerIP: <YOUR IP>
     ports:
       http:
         port: 51821
         targetPort: 51821
+  wg:
+    controller: main
+    primary: false
+    type: LoadBalancer
+    # loadBalancerIP: <YOUR IP>
+    ports:
       wg:
         port: 51820
         targetPort: 51820
