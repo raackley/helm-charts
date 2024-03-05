@@ -50,6 +50,12 @@ spec:
               value: {{ .Values.env.downloadDir | quote }}
             - name: TRANSMISSION_INCOMPLETE_DIR
               value: {{ .Values.env.incompleteDir | quote }}
+            - name: TRANSMISSION_RPC_AUTHENTICATION_REQUIRED
+              value: {{ .Values.env.rpcAuthenticationRequired | quote }}
+            - name: TRANSMISSION_RPC_USERNAME
+              value: {{ .Values.env.rpcUsername | quote }}
+            - name: TRANSMISSION_RPC_PASSWORD
+              value: {{ .Values.env.rpcPassword | quote }}
             {{- if .Values.env.puid }}
             - name: PUID
               value: {{ .Values.env.puid | quote }}

@@ -19,6 +19,9 @@ env:
   transmissionWatchDirEnabled: "false"
   downloadDir: "/data/completed"
   incompleteDir: "/tmp/incomplete"
+  rpcAuthenticationRequired: "false"
+  rpcUsername: "username"
+  rpcPassword: "password"
 
 service:
   type: ClusterIP
