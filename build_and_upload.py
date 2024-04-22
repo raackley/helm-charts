@@ -32,7 +32,7 @@ for chart_dir in chart_dirs:
     if repo_has_version(chart_dir, version) == False:
         print(f"Building and uploading chart {chart_dir} version {version} to {repo_url}.")
         subprocess.run(["helm", "dependency", "update", f"charts/{chart_dir}/"])
-        subprocess.run(["helm", "package", f"helm/{chart_dir}/"])
+        subprocess.run(["helm", "package", f"charts/{chart_dir}/"])
 
         with open(f"{chart_dir}-{version}.tgz", "rb") as f:
             data = f.read()
