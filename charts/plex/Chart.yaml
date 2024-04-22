@@ -1,9 +1,9 @@
 ---
 apiVersion: v2
-appVersion: 1.40.1.8227-c0dd5a73e-ls211 # https://github.com/linuxserver/docker-plex/releases
+appVersion: 1.40.2.8395-c67dce28e-ls213 # https://github.com/linuxserver/docker-plex/releases
 description: Plex Media Server
 name: plex
-version: 11.0.17
+version: 11.0.18
 kubeVersion: ">=1.22.0-0"
 dependencies:
   - name: common
