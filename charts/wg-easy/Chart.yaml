@@ -3,7 +3,7 @@ apiVersion: v2
 appVersion: 14 # https://github.com/wg-easy/wg-easy/pkgs/container/wg-easy
 description: wg-easy
 name: wg-easy
-version: 1.0.2
+version: 1.0.3
 dependencies:
   - name: common
     repository: https://bjw-s.github.io/helm-charts

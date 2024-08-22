@@ -25,7 +25,7 @@ controllers:
           tag: "{{.Chart.AppVersion}}"
         env:
           WG_HOST: "YOUR_SERVER_IP"
-          PASSWORD: "YOUR_ADMIN_PASSWORD"
+          PASSWORD_HASH: "YOUR_ADMIN_PASSWORD_HASH" # https://github.com/wg-easy/wg-easy/blob/master/How_to_generate_an_bcrypt_hash.md
           WG_DEFAULT_ADDRESS: "10.255.0.x"
           WG_DEFAULT_DNS: "9.9.9.9"
         securityContext:
