@@ -18,6 +18,14 @@ readsb:
   stats_range: "true"
   net_enable: "true"
   rtl_device_path: ""
+  web:
+    ingress:
+      enabled: false
+      annotations: {}
+        # kubernetes.io/ingress.class: nginx
+        # kubernetes.io/tls-acme: "true"
+      hosts:
+        - host: chart-example.local
 
 beast:
   host: "readsb-beast"

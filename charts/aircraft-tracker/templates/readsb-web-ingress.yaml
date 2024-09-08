@@ -1,0 +1,26 @@
+{{- if .Values.readsb.web.ingress.enabled -}}
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: readsb-web
+  labels:
+    app: readsb
+  {{- with .Values.readsb.web.ingress.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  rules:
+    {{- range .Values.readsb.web.ingress.hosts }}
+    - host: {{ .host | quote }}
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: readsb-service-8080
+                port:
+                  number: 8080
+    {{- end }}
+{{- end }}
