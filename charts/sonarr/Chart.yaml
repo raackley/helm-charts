@@ -1,9 +1,9 @@
 ---
 apiVersion: v2
-appVersion: 4.0.2 # https://fleet.linuxserver.io/image?name=linuxserver/sonarr
+appVersion: 4.0.9 # https://fleet.linuxserver.io/image?name=linuxserver/sonarr
 description: Sonarr
 name: sonarr
-version: 1.0.0
+version: 1.0.1
 dependencies:
   - name: common
     version: 1.5.0
