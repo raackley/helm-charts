@@ -1,9 +1,9 @@
 ---
 apiVersion: v2
-appVersion: 2.13.4 # https://fleet.linuxserver.io/image?name=linuxserver/tautulli
+appVersion: 2.14.5 # https://fleet.linuxserver.io/image?name=linuxserver/tautulli
 description: Tautulli
 name: tautulli
-version: 0.1.1
+version: 0.1.2
 dependencies:
   - name: common
     version: 1.5.0
