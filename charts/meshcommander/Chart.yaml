@@ -1,0 +1,10 @@
+---
+apiVersion: v2
+appVersion: latest # https://github.com/raackley?tab=packages&repo_name=meshcommander-docker
+description: meshcommander
+name: meshcommander
+version: 0.1.1
+dependencies:
+  - name: common
+    repository: https://bjw-s.github.io/helm-charts
+    version: 2.6.0
