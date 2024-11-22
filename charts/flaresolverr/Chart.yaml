@@ -1,0 +1,10 @@
+---
+apiVersion: v2
+appVersion: v3.3.21 # https://github.com/FlareSolverr/FlareSolverr/pkgs/container/flaresolverr
+description: flaresolverr
+name: flaresolverr
+version: 0.1.0
+dependencies:
+  - name: common
+    repository: https://bjw-s.github.io/helm-charts
+    version: 3.5.1

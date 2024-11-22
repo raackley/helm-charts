@@ -1,0 +1,17 @@
+controllers:
+  main:
+    replicas: 1
+    containers:
+      main:
+        image:
+          pullPolicy: IfNotPresent
+          repository: ghcr.io/flaresolverr/flaresolverr
+          tag: "{{.Chart.AppVersion}}"
+
+service:
+  main:
+    ports:
+      http:
+        port: 8191
+        targetPort: 8191
+    controller: main

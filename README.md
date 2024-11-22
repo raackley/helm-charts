@@ -7,6 +7,7 @@ This is a collection of various Helm Charts.  Each Helm Chart is in it's own sub
 * Aircraft Tracker
 * Ansible Semaphore
 * Curl Cronjob
+* Flaresolverr
 * IngressRoute
 * Lidarr
 * MeshCommander
