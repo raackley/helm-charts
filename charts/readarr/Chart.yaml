@@ -1,9 +1,9 @@
 ---
 apiVersion: v2
-appVersion: 0.1.7-develop
+appVersion: 0.4.6-develop # https://fleet.linuxserver.io/image?name=linuxserver/readarr
 description: Readarr
 name: readarr
-version: 0.1.2
+version: 0.2.0
 dependencies:
   - name: common
     version: 1.5.0
