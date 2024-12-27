@@ -1,9 +1,9 @@
 ---
 apiVersion: v2
-appVersion: 5.11.0 # https://fleet.linuxserver.io/image?name=linuxserver/radarr
+appVersion: latest # https://fleet.linuxserver.io/image?name=linuxserver/radarr
 description: Radarr
 name: radarr
-version: 0.2.3
+version: 1.0.0
 dependencies:
   - name: common
     version: 1.5.0

@@ -1,9 +1,9 @@
 ---
 apiVersion: v2
-appVersion: 1.33.2 # https://fleet.linuxserver.io/image?name=linuxserver/overseerr
+appVersion: latest # https://fleet.linuxserver.io/image?name=linuxserver/overseerr
 description: Overseerr
 name: overseerr
-version: 0.1.0
+version: 1.0.0
 dependencies:
   - name: common
     version: 1.5.0
