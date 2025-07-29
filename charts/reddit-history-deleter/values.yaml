@@ -7,7 +7,7 @@ controllers:
     containers:
       main:
         image:
-          pullPolicy: IfNotPresent
+          pullPolicy: Always
           repository: raackley/reddit-history-deleter
           tag: latest
         env:
