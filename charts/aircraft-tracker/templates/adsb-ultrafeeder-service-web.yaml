@@ -1,14 +1,14 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: readsb-service-8080
+  name: adsb-ultrafeeder-service-web
   labels:
-    app: readsb
+    app: adsb-ultrafeeder
 spec:
   type: ClusterIP
   selector:
-    app: readsb
+    app: adsb-ultrafeeder
   ports:
       # By default and for convenience, the `targetPort` is set to the same value as the `port` field.
-    - port: 8080
-      targetPort: 8080
+    - port: 80
+      targetPort: 80
