@@ -36,6 +36,10 @@ spec:
           value: {{ .Values.ultrafeeder.rx_location_accuracy | quote }}
         - name: READSB_STATS_RANGE
           value: {{ .Values.ultrafeeder.stats_range | quote }}
+        - name: UUID
+          value: {{ .Values.ultrafeeder.uuid | quote }}
+        - name: ULTRAFEEDER_CONFIG
+          value: {{ .Values.ultrafeeder_config | quote }}
         volumeMounts:
         - mountPath: /var/lib/collectd
           name: adsb-ultrafeederpb-rrd

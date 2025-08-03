@@ -22,6 +22,11 @@ ultrafeeder:
         # kubernetes.io/tls-acme: "true"
       hosts:
         - host: chart-example.local
+  uuid: "" # generate with: cat /proc/sys/kernel/random/uuid
+
+# See example ULTRAFEEDER_CONFIG to feed sites such as ADS-B Exchange, or planespotters.net for example
+# https://github.com/sdr-enthusiasts/docker-adsb-ultrafeeder/blob/main/docker-compose.yml
+ultrafeeder_config: "adsb,feed.planespotters.net,30004,beast_reduce_plus_out;mlat,mlat.planespotters.net,31090,39003;"
 
 beast:
   host: "adsb-ultrafeeder-beast"
@@ -34,7 +39,3 @@ piaware:
 fr24feed:
   mlat: "no"
   key: ""
-
-adsbx:
-  sitename: ""
-  uuid: ""  # cat /proc/sys/kernel/random/uuid
