@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: adsb-ultrafeeder
+  labels:
+    app: adsb-ultrafeeder
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: adsb-ultrafeeder
+  template:
+    metadata:
+      labels:
+        app: adsb-ultrafeeder
+    spec:
+      containers:
+      - name: adsb-ultrafeeder
+        image: ghcr.io/sdr-enthusiasts/docker-adsb-ultrafeeder:latest
+        env:
+        - name: LAT
+          value: {{ .Values.lat | quote }}
+        - name: LONG
+          value: {{ .Values.lon | quote }}
+        - name: ALT
+          value: {{ .Values.alt | quote }}
+        - name: TZ
+          value: {{ .Values.timezone | quote }}
+        - name: READSB_DEVICE_TYPE
+          value: {{ .Values.ultrafeeder.device_type | quote }}
+        - name: READSB_GAIN
+          value: {{ .Values.ultrafeeder.gain | quote }}
+        - name: READSB_RX_LOCATION_ACCURACY
+          value: {{ .Values.ultrafeeder.rx_location_accuracy | quote }}
+        - name: READSB_STATS_RANGE
+          value: {{ .Values.ultrafeeder.stats_range | quote }}
+        volumeMounts:
+        - mountPath: /var/lib/collectd
+          name: adsb-ultrafeederpb-rrd
+        - mountPath: {{ .Values.ultrafeeder.rtl_device_path }}
+          name: rtl-device
+        securityContext:
+          privileged: true
+        ports:
+        - containerPort: 80
+        - containerPort: {{ .Values.beast.port }}
+      volumes:
+      - name: adsb-ultrafeederpb-rrd
+        emptyDir: {}
+      - name: rtl-device
+        hostPath:
+          path: {{ .Values.ultrafeeder.rtl_device_path }}
+      nodeSelector:
+        ultrafeeder: 'true'

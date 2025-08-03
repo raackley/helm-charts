@@ -25,7 +25,7 @@ spec:
         - name: LONG
           value: {{ .Values.lon | quote }}
         - name: ALT
-          value: {{ .Values.alt }}ft
+          value: {{ .Values.alt }}
         - name: BEASTHOST
           value: {{ .Values.beast.host | quote }}
         - name: BEASTPORT

@@ -6,17 +6,13 @@ timezone: "America/New_York"
 
 lat: ""  # feeder latitude
 lon: ""  # feeder longitude
-alt: ""  # feeder altitude, just the number, in feet
+alt: ""  # feeder altitude, include "ft" or "m". For example, 15m or 45ft
 
-readsb:
-  dcfilter: "true"
+ultrafeeder:
   device_type: "rtlsdr"
-  fix: "true"
-  gain: "autogain"
-  modeac: "true"
+  gain: "auto"
   rx_location_accuracy: "2"
   stats_range: "true"
-  net_enable: "true"
   rtl_device_path: ""
   web:
     ingress:
@@ -28,7 +24,7 @@ readsb:
         - host: chart-example.local
 
 beast:
-  host: "readsb-beast"
+  host: "adsb-ultrafeeder-beast"
   port: "30005"
 
 piaware:

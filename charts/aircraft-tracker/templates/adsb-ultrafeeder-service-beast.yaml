@@ -3,11 +3,11 @@ kind: Service
 metadata:
   name: {{ .Values.beast.host }}
   labels:
-    app: readsb
+    app: adsb-ultrafeeder
 spec:
   type: ClusterIP
   selector:
-    app: readsb
+    app: adsb-ultrafeeder
   ports:
     - protocol: TCP
       port: {{ .Values.beast.port }}
