@@ -11,7 +11,7 @@ def get_chart_version(file_to_read):
     with open(file_to_read, "r") as chart_file:
         for line in chart_file.readlines():
             if "version:" in line:
-                return line.split(" ")[1].strip()
+                return line.split(" ")[1].strip().strip("\"\'")
 
 def repo_has_version(chart, local_version):
     r = requests.get(f"{repo_url}/api/charts/{chart}/{local_version}")
