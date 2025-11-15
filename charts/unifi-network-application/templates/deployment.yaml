@@ -20,6 +20,16 @@ spec:
         - name: {{ include "template.fullname" . }}-mongodb-init-volume
           configMap:
             name: {{ include "template.fullname" . }}-mongodb-init-js
+        {{- if .Values.mongodb.persistence.enabled }}
+        - name: mongodb-data
+          {{- if .Values.mongodb.persistence.existingClaim }}
+          persistentVolumeClaim:
+            claimName: {{ .Values.mongodb.persistence.existingClaim }}
+          {{- else }}
+          persistentVolumeClaim:
+            claimName: {{ printf "%s-mongodb-pvc" (include "template.fullname" .) }}
+          {{- end }}
+        {{- end }}
       {{- with .Values.mongodb.volumes }}
         {{- toYaml . | nindent 8 }}
       {{- end }}
@@ -28,7 +38,7 @@ spec:
         - name: mongodb
           image: "{{ .Values.mongodb.image }}:{{ .Values.mongodb.imageTag }}"
           args: ["--wiredTigerCacheSizeGB", "{{ .Values.mongodb.cacheSizeGB }}"]
-
+          
           env:
             - name: MONGO_INITDB_ROOT_USERNAME
               value: {{ .Values.mongodb.adminuser }}
@@ -43,6 +53,11 @@ spec:
           volumeMounts:
             - name: {{ include "template.fullname" . }}-mongodb-init-volume
               mountPath: /docker-entrypoint-initdb.d/init-mongo.js
+              subPath: init-mongo.js
+            {{- if .Values.mongodb.persistence.enabled }}
+            - name: mongodb-data
+              mountPath: /data/db
+            {{- end }}
           {{- with .Values.mongodb.volumeMounts }}
             {{- toYaml . | nindent 12 }}
           {{- end }}
@@ -86,7 +101,7 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           env:
             - name: TZ
-              value: "Europe/Budapest"
+              value: {{ .Values.service.tz }}
             - name: MEM_LIMIT
               value: "1024"
             - name: MEM_STARTUP
@@ -101,6 +116,14 @@ spec:
               value: {{ .Values.mongodb.password }}
             - name: MONGO_DBNAME
               value: {{ .Values.mongodb.dbname }}
+            {{- if .Values.puid }}
+            - name: PUID
+              value: {{ .Values.puid}}
+            {{- end }}
+            {{- if .Values.pgid }}
+            - name: PGID
+              value: {{ .Values.pgid}}
+            {{- end }}
 
           ports:
             - name: 'l2-discoverable'
