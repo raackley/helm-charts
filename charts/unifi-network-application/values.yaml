@@ -17,6 +17,7 @@ service:
   annotations: {}
   type:
   loadBalancerIP:
+  tz:
 
 # Not optional - otherwise UI not accessible
 ingress:
@@ -63,6 +64,9 @@ persistence:
   size: 5Gi # Size of the PVC
   existingClaim: "" # Optional: Name of an existing PVC to use instead of creating a new one
 
+puid: ""
+pgid: ""
+
 mongodb:
   # Image to pull and use. For Arm64 (Raspberry Pi 4 for example), use "arm64v8/mongo"
   image: "mongo"
@@ -78,6 +82,12 @@ mongodb:
   password: ""
   adminuser: ""
   adminpassword: ""
+  persistence: # Default user:group for MongoDB is 999:999
+    enabled: false # Set to true to enable PVC creation for MongoDB
+    storageClass: "" # Name of your StorageClass
+    accessMode: ReadWriteOnce # Access mode for the PVC
+    size: 8Gi # Size of the PVC for MongoDB data
+    existingClaim: "" # Optional: Name of an existing PVC to use instead of creating a new one
   # Volumes and their corresponding mounts for the mongodb deployment
   # Storage for mongodb should be mounted under /data/db
   volumes: []
