@@ -1,0 +1,48 @@
+image:
+  pullPolicy: Always
+  repository: rmcrackan/libation
+  tag: ""
+
+securityContext:
+  runAsUser: 1001
+  runAsGroup: 1001
+
+env:
+  SLEEP_TIME: "10m"
+
+service:
+  main:
+    enabled: false
+
+probes:
+  liveness:
+    enabled: false
+    type: "HTTP"
+  readiness:
+    enabled: false
+  startup:
+    enabled: false
+    type: "HTTP"
+
+persistence:
+  config:
+    enabled: true
+    mountPath: /config
+    accessMode: ReadWriteOnce
+    size: 1Gi
+  books:
+    enabled: true
+    mountPath: /data
+    accessMode: ReadWriteOnce
+    size: 50Gi
+
+ingress:
+  main:
+    enabled: false
+    hosts:
+      - host: chart-example.local
+        paths:
+          - path: /
+            pathType: Prefix
+            service:
+              port: http
