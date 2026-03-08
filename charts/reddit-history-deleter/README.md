@@ -1,4 +1,4 @@
-# Wordle
+# Reddit History Deleter
 
 This chart deploys Reddit History Deleter cronjob.  See [this](https://gitlab.com/raackley/reddit-history-deleter) for project details.
 

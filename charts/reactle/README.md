@@ -1,6 +1,6 @@
-# Wordle
+# Reactle
 
-This chart deploys Wordle.
+This chart deploys Reactle.
 
 ## Installation
 
@@ -17,5 +17,5 @@ helm repo update
 Install (Helm v3).
 
 ```
-helm install <release name> -n <namespace> --create-namespace raackley-stable/wordle
+helm install <release name> -n <namespace> --create-namespace raackley-stable/reactle
 ```

@@ -1,0 +1,9 @@
+---
+apiVersion: v2
+description: Reactle
+name: reactle
+version: 0.1.7
+dependencies:
+  - name: common
+    version: 1.5.1
+    repository: https://bjw-s-labs.github.io/helm-charts/
