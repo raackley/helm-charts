@@ -18,6 +18,7 @@ This is a collection of various Helm Charts.  Each Helm Chart is in it's own sub
 * Plex Server
 * Prowlarr
 * Radarr
+* Reactle
 * Readarr
 * Reddit History Deleter
 * SearXNG
@@ -29,7 +30,6 @@ This is a collection of various Helm Charts.  Each Helm Chart is in it's own sub
 * VPN Proxy
 * wg-easy
 * Wireguard Server
-* Wordle
 
 ## Chart Repository
 Charts in this project are stored in a GitLab Package Repo.  To install the Helm repo, run the following.

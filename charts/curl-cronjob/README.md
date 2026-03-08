@@ -1,4 +1,4 @@
-# Wordle
+# Curl-cronjob
 
 This chart deploys literally just a curl cronjob.  Just provide a schedule and a url.  That's it.
 
