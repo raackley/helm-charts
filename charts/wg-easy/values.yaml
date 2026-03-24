@@ -5,7 +5,7 @@ controllers:
     initContainers:
       init:
         image:
-          pullPolicy: IfNotPresent
+          pullPolicy: Always
           repository: busybox
           tag: 1.37 # https://hub.docker.com/_/busybox/tags
         command:
@@ -20,7 +20,7 @@ controllers:
     containers:
       main:
         image:
-          pullPolicy: IfNotPresent
+          pullPolicy: Always
           repository: ghcr.io/wg-easy/wg-easy
           tag: "{{.Chart.AppVersion}}"
         env:
