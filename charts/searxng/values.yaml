@@ -19,13 +19,20 @@ controllers:
         securityContext:
           readOnlyRootFilesystem: false
           runAsNonRoot: false
+        probes:
+          liveness:
+            enabled: true
+          readiness:
+            enabled: true
+          startup:
+            enabled: true     
 
 service:
   main:
+    controller: main
     ports:
       http:
         port: 8080
-        targetPort: 8080
 
 persistence:
   config:
@@ -45,3 +52,5 @@ ingress:
             pathType: Prefix
             service:
               name: main
+              port:
+                number: 8080
