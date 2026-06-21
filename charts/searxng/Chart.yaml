@@ -1,11 +1,11 @@
 ---
 apiVersion: v2
-appVersion: 2024.10.26-e08ff05ff # https://hub.docker.com/r/searxng/searxng/tags
+appVersion: 2026.6.20-fd42d4fda # https://hub.docker.com/r/searxng/searxng/tags
 description: SearXNG
 name: searxng
-version: 1.0.4
+version: 1.0.9
 kubeVersion: ">=1.22.0-0"
 dependencies:
   - name: common
-    repository: https://bjw-s.github.io/helm-charts
-    version: 2.4.0
+    repository: https://bjw-s-labs.github.io/helm-charts
+    version: 5.0.1
